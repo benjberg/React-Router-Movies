@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 const MovieList = props => {
+  const {url} = useRouteMatch();
   const [movies, setMovies] = useState([])
   useEffect(() => {
     const getMovies = () => {
@@ -9,6 +10,9 @@ const MovieList = props => {
         .get('http://localhost:5000/api/movies')
         .then(response => {
           setMovies(response.data);
+          console.log('c-log',response.data)
+
+         
         })
         .catch(error => {
           console.error('Server Error', error);
@@ -21,11 +25,13 @@ const MovieList = props => {
   return (
    
     <div className="movie-list">
-      <Link to= '/movies/:movieID'>
+     
       {movies.map(movie => (
+         <Link to={`/movies/${movie.id}`}>
         <MovieDetails key={movie.id} movie={movie} />
+        </Link>
       ))}
-      </Link>
+     
     </div>
     
   );

@@ -6,12 +6,12 @@ import {useParams} from 'react-router-dom';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
-const params =useParams(); 
-console.log('param', params)
+const {movieID} =useParams(); 
+// console.log('param', params)
 
   useEffect(() => {
     
-    const id = params;
+    const id = `${movieID}`;
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
@@ -20,14 +20,15 @@ console.log('param', params)
         .then(response => {
           setMovie(response.data);
          
+         
           
-         console.log('clog', response.data) 
+          
         })
         .catch(error => {
           console.error(error);
         });
 
-  },[]);
+  },[{movieID}]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
