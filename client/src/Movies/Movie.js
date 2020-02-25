@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 
 
 
@@ -62,7 +62,7 @@ const {movieID} =useParams();
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <Link to='/'>Save</Link>
     </div>
   );
 }
